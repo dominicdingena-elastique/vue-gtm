@@ -6,6 +6,13 @@ import pluginConfig from './config'
 var inBrowser = typeof window !== 'undefined'
 
 export default class AnalyticsPlugin {
+  id(val) {
+    if (hasScript()) {
+      throw Error('Cannot set ID after script had been loaded');
+    }
+    pluginConfig.id = val
+  }
+  
   enabled() {
     return pluginConfig.enabled
   }
